@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medida Disciplinaria · MPC Soluciones</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="page-portal">
+
+  <header class="portal-header">
+    <div class="portal-logo">
+      <span class="logo-mpc-sm">MPC</span>
+      <span class="logo-divider">·</span>
+      <span class="logo-section">Formularios</span>
+    </div>
+    <div class="portal-user">
+      <div class="avatar" id="user-avatar">--</div>
+      <span class="user-name" id="user-name">...</span>
+      <button class="btn-logout" onclick="handleLogout()" title="Cerrar sesión">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <div class="form-topbar">
+      <a href="formularios.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Volver
+      </a>
+      <span class="form-topbar-title">Medida disciplinaria</span>
+      <span class="badge badge-rrhh">FO-RRHH-005</span>
+    </div>
+
+    <div class="form-wrap">
+      <div class="form-header-block">
+        <p>Debe ser completado por el jefe directo o superior jerárquico. La información consignada debe ser objetiva y verificable.</p>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="progress-bar">
+        <div class="progress-steps" id="progress-steps"></div>
+        <span class="progress-label" id="progress-label">Sección 1 de 7</span>
+      </div>
+
+      <!-- SECCIÓN 1 -->
+      <div class="form-section active" id="sec-1">
+        <div class="section-title">Datos del trabajador</div>
+        <div class="field" id="f-nombre">
+          <label>Nombre completo del trabajador <span class="req">*</span></label>
+          <input type="text" id="nombre" placeholder="Ej: Juan Pérez González" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="field" id="f-empresa">
+          <label>Empresa empleadora <span class="req">*</span></label>
+          <select id="empresa">
+            <option value="">Seleccionar empresa...</option>
+            <option value="MPC Soluciones">MPC Soluciones</option>
+            <option value="Campo Y Carne">Campo Y Carne</option>
+            <option value="Mosheja">Mosheja</option>
+            <option value="otro">Otros...</option>
+          </select>
+          <input type="text" class="other-input" id="empresa-otro" placeholder="Especificar empresa" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="field" id="f-local">
+          <label>Local / Área <span class="req">*</span></label>
+          <input type="text" id="local" placeholder="Ej: Sucursal Centro, Depósito Norte" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="field" id="f-cargo">
+          <label>Cargo del trabajador <span class="req">*</span></label>
+          <input type="text" id="cargo" placeholder="Ej: Vendedor, Cajero, Supervisor" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="form-nav">
+          <span></span>
+          <button class="btn btn-primary" onclick="goTo(2)">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 2 -->
+      <div class="form-section" id="sec-2">
+        <div class="section-title">Datos del solicitante</div>
+        <div class="field" id="f-jefe">
+          <label>Nombre del jefe <span class="req">*</span></label>
+          <input type="text" id="jefe" placeholder="Nombre completo" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="field" id="f-cargo-jefe">
+          <label>Cargo <span class="req">*</span></label>
+          <input type="text" id="cargo-jefe" placeholder="Ej: Jefe de local, Gerente de área" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="field" id="f-correo">
+          <label>Correo corporativo <span class="req">*</span></label>
+          <input type="email" id="correo" placeholder="nombre@empresa.com" />
+          <span class="error-msg">Ingresá un correo válido.</span>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(1)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Anterior</button>
+          <button class="btn btn-primary" onclick="goTo(3)">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 3 -->
+      <div class="form-section" id="sec-3">
+        <div class="section-title">Información del hecho</div>
+        <div class="field-row">
+          <div class="field" id="f-fecha">
+            <label>Fecha del suceso <span class="req">*</span></label>
+            <input type="date" id="fecha" />
+            <span class="error-msg">Este campo es obligatorio.</span>
+          </div>
+          <div class="field" id="f-hora">
+            <label>Hora del suceso <span class="req">*</span></label>
+            <input type="time" id="hora" />
+            <span class="error-msg">Este campo es obligatorio.</span>
+          </div>
+        </div>
+        <div class="field" id="f-lugar">
+          <label>Lugar donde ocurrió <span class="req">*</span></label>
+          <input type="text" id="lugar" placeholder="Ej: Salón de ventas, Depósito" />
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="field" id="f-detecto">
+          <label>¿Fue detectado directamente por usted? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="detecto" value="Sí, lo presencié directamente" /> Sí, lo presencié directamente</label>
+            <label><input type="radio" name="detecto" value="No, fue informado por un tercero" /> No, fue informado por un tercero</label>
+            <label><input type="radio" name="detecto" value="No, fue detectado por evidencia" /> No, fue detectado por evidencia (cámara, registro, etc.)</label>
+          </div>
+          <span class="error-msg">Seleccioná una opción.</span>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(2)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Anterior</button>
+          <button class="btn btn-primary" onclick="goTo(4)">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 4 -->
+      <div class="form-section" id="sec-4">
+        <div class="section-title">Descripción del hecho</div>
+        <div class="field" id="f-descripcion">
+          <label>Descripción objetiva del hecho <span class="req">*</span></label>
+          <textarea id="descripcion" rows="5" placeholder="Describir hechos verificables. No incluir opiniones ni calificativos."></textarea>
+          <p class="field-hint">Solo hechos verificables. Sin opiniones ni calificativos.</p>
+          <button class="btn-ai" id="btn-ai" onclick="mejorarDescripcion()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Mejorar redacción con IA
+          </button>
+          <span class="ai-loading" id="ai-loading">Procesando...</span>
+          <span class="error-msg">Este campo es obligatorio.</span>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(3)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Anterior</button>
+          <button class="btn btn-primary" onclick="goTo(5)">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 5 -->
+      <div class="form-section" id="sec-5">
+        <div class="section-title">Clasificación preliminar</div>
+        <div class="field" id="f-clasificacion">
+          <label>Clasificación preliminar <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="clasificacion" value="Falta leve" /> Falta leve</label>
+            <label><input type="radio" name="clasificacion" value="Falta grave" /> Falta grave</label>
+            <label><input type="radio" name="clasificacion" value="Falta muy grave" /> Falta muy grave</label>
+            <label><input type="radio" name="clasificacion" value="Sin clasificar" /> Sin clasificar (requiere evaluación)</label>
+          </div>
+          <span class="error-msg">Seleccioná una opción.</span>
+        </div>
+        <div class="field" id="f-verbal">
+          <label>¿Intentó corrección verbal previa? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="verbal" value="Sí" /> Sí</label>
+            <label><input type="radio" name="verbal" value="No" /> No</label>
+            <label><input type="radio" name="verbal" value="No aplica" /> No aplica para este caso</label>
+          </div>
+          <span class="error-msg">Seleccioná una opción.</span>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(4)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Anterior</button>
+          <button class="btn btn-primary" onclick="goTo(6)">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 6 -->
+      <div class="form-section" id="sec-6">
+        <div class="section-title">Evidencia</div>
+        <div class="field" id="f-evidencia">
+          <label>Evidencia disponible <span class="req">*</span></label>
+          <div class="check-group">
+            <label><input type="checkbox" name="evidencia" value="Grabación de cámara de seguridad" /> Grabación de cámara de seguridad</label>
+            <label><input type="checkbox" name="evidencia" value="Testigos presenciales" /> Testigos presenciales</label>
+            <label><input type="checkbox" name="evidencia" value="Documentos o registros" /> Documentos o registros</label>
+            <label><input type="checkbox" name="evidencia" value="Fotografías" /> Fotografías</label>
+            <label><input type="checkbox" name="evidencia" value="Registros de sistema" /> Registros de sistema</label>
+            <label><input type="checkbox" name="evidencia" value="Sin evidencia disponible" /> Sin evidencia disponible</label>
+            <label><input type="checkbox" name="evidencia" value="otro" id="evidencia-otro-check" /> Otra</label>
+          </div>
+          <input type="text" class="other-input" id="evidencia-otro" placeholder="Especificar otro tipo de evidencia" />
+          <span class="error-msg">Seleccioná al menos una opción.</span>
+        </div>
+        <div class="field">
+          <label>Adjuntar archivos <span class="field-opt">(opcional)</span></label>
+          <div class="file-drop" onclick="document.getElementById('file-input').click()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            <p>Hacé clic para adjuntar archivos</p>
+            <p class="file-drop-sub">Fotos, documentos, videos · Máx. 10 MB por archivo</p>
+            <input type="file" id="file-input" multiple accept="image/*,.pdf,.doc,.docx,.mp4" onchange="handleFiles(this.files)" />
+          </div>
+          <div class="file-list" id="file-list"></div>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(5)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Anterior</button>
+          <button class="btn btn-primary" onclick="goTo(7)">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 7 -->
+      <div class="form-section" id="sec-7">
+        <div class="section-title">Declaración final</div>
+        <div class="declaration-box">
+          <strong>Declaración jurada del solicitante</strong>
+          <p>Declaro que la información consignada es veraz y objetiva, y solicito la evaluación correspondiente conforme al procedimiento interno vigente.</p>
+        </div>
+        <div class="confirm-row">
+          <input type="checkbox" id="confirm" />
+          <label for="confirm">Confirmo que la información es correcta y asumo responsabilidad por su veracidad.</label>
+        </div>
+        <div id="submit-error" class="alert alert-error" style="display:none"></div>
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(6)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Anterior</button>
+          <button class="btn btn-primary" id="btn-submit" onclick="submitForm()">
+            <span id="btn-submit-text">Enviar solicitud</span>
+            <span id="btn-submit-loading" style="display:none">Enviando...</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ÉXITO -->
+      <div class="success-screen" id="success-screen" style="display:none">
+        <div class="success-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2>Solicitud enviada correctamente</h2>
+        <p>El equipo de RRHH fue notificado. El número de tu solicitud es <strong id="solicitud-id">--</strong>.</p>
+        <div class="success-actions">
+          <a href="formularios.html" class="btn btn-ghost">Volver al inicio</a>
+          <button class="btn btn-primary" onclick="resetForm()">Nueva solicitud</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/form-disciplinario.js"></script>
+  <script>
+    checkSession().then(session => {
+      if (!session) { window.location.href = '../index.html'; return; }
+      const user     = session.user;
+      const name     = user.user_metadata?.nombre || user.email.split('@')[0];
+      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('user-name').textContent   = name;
+      document.getElementById('user-avatar').textContent = initials;
+    });
+    async function handleLogout() {
+      await signOut();
+      window.location.href = '../index.html';
+    }
+  </script>
+</body>
+</html>
