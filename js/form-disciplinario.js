@@ -195,7 +195,7 @@ async function submitForm() {
     const data = collectData();
 
     // Guardar en Supabase
-    const { data: inserted, error } = await supabase
+    const { data: inserted, error } = await sbClient
       .from('medidas_disciplinarias')
       .insert([data])
       .select()
