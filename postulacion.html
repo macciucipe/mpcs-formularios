@@ -18,9 +18,10 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: linear-gradient(135deg, #0f1729 0%, #1B2B5E 60%, #243672 100%);
-      min-height: 100vh; padding: 2rem 1rem; display: flex; align-items: flex-start; justify-content: center;
+      min-height: 100vh; padding: 2rem 1rem;
+      display: flex; align-items: flex-start; justify-content: center;
     }
-    .container { width: 100%; max-width: 520px; }
+    .container { width: 100%; max-width: 560px; }
     .header { text-align: center; margin-bottom: 1.75rem; }
     .logo { display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
     .logo .mpc { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -1.5px; }
@@ -29,37 +30,47 @@
     .card { background: var(--white); border-radius: var(--radius-xl); padding: 2rem; box-shadow: 0 24px 48px rgba(0,0,0,0.3); }
     .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
     .card .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+    .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 1.25rem 0 0.75rem; padding-bottom: 6px; border-bottom: 1px solid rgba(0,0,0,0.08); }
     .field { margin-bottom: 1rem; }
     .field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 5px; }
-    .field input, .field select {
+    .field input, .field select, .field textarea {
       width: 100%; font-size: 14px; padding: 9px 12px;
       border: 1px solid var(--border-md); border-radius: var(--radius-md);
       background: var(--white); color: var(--text); outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
-    .field input:focus, .field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(46,77,176,0.1); }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(46,77,176,0.1); }
+    .field textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
     .field .req { color: var(--error); }
-    .input-group { display: flex; gap: 8px; }
-    .input-group input { flex: 1; }
-    .btn-consultar {
-      font-size: 12px; padding: 9px 12px; background: var(--navy-light);
-      color: var(--navy); border: 1px solid var(--navy-light);
-      border-radius: var(--radius-md); cursor: pointer; white-space: nowrap;
-      transition: background 0.15s; font-weight: 500;
-    }
-    .btn-consultar:hover { background: #d0daf5; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .upload-area {
+      border: 2px dashed var(--border-md); border-radius: var(--radius-md);
+      padding: 1.25rem; text-align: center; cursor: pointer;
+      transition: all 0.2s; position: relative;
+    }
+    .upload-area:hover { border-color: var(--navy); background: var(--navy-light); }
+    .upload-area input { display: none; }
+    .upload-area p { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+    .upload-area .sub-text { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+    .upload-preview { display: none; align-items: center; gap: 10px; padding: 8px 12px; background: var(--navy-light); border-radius: var(--radius-md); margin-top: 8px; font-size: 13px; }
+    .upload-preview.visible { display: flex; }
+    .upload-preview button { background: none; border: none; cursor: pointer; color: var(--error); font-size: 16px; margin-left: auto; }
+    .foto-preview { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; display: none; margin: 8px auto 0; border: 2px solid var(--navy-light); }
+    .foto-preview.visible { display: block; }
+    #mapa-container { display: none; margin-top: 10px; }
+    #mapa { width: 100%; height: 200px; border-radius: var(--radius-md); border: 1px solid var(--border-md); }
+    .alert { font-size: 13px; padding: 10px 14px; border-radius: var(--radius-md); margin-bottom: 1rem; }
+    .alert-error { background: var(--error-bg); color: var(--error); border: 1px solid rgba(220,38,38,0.2); }
+    .alert-info { background: var(--navy-light); color: var(--navy); border: 1px solid rgba(46,77,176,0.2); font-size: 12px; }
     .btn-submit {
       width: 100%; padding: 12px; background: var(--navy); color: #fff;
       border: none; border-radius: var(--radius-md); font-size: 15px;
-      font-weight: 600; cursor: pointer; transition: background 0.15s;
-      margin-top: 0.5rem;
+      font-weight: 600; cursor: pointer; transition: background 0.15s; margin-top: 0.5rem;
     }
     .btn-submit:hover { background: var(--navy-dark); }
     .btn-submit:disabled { opacity: 0.6; cursor: default; }
-    .alert { font-size: 13px; padding: 10px 14px; border-radius: var(--radius-md); margin-bottom: 1rem; }
-    .alert-error { background: var(--error-bg); color: var(--error); border: 1px solid rgba(220,38,38,0.2); }
-    .alert-info { background: var(--navy-light); color: var(--navy); border: 1px solid rgba(46,77,176,0.2); font-size:12px; }
+    .progress-bar { width: 100%; height: 4px; background: var(--border-md); border-radius: 2px; margin-top: 8px; display: none; }
+    .progress-fill { height: 100%; background: var(--navy); border-radius: 2px; transition: width 0.3s; }
     .success-screen { text-align: center; padding: 1rem 0; }
     .success-icon { font-size: 52px; margin-bottom: 1rem; }
     .success-screen h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
@@ -71,25 +82,23 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo">
-        <span class="mpc">MPC</span>
-        <span class="sol">Soluciones</span>
-      </div>
+      <div class="logo"><span class="mpc">MPC</span><span class="sol">Soluciones</span></div>
       <p>Portal de postulaciones</p>
     </div>
 
     <div class="card" id="card-form">
       <h2>Formulario de postulación</h2>
-      <p class="sub">Completá tus datos para iniciar el proceso de selección. Solo te llevará un par de minutos.</p>
+      <p class="sub">Completá tus datos para iniciar el proceso de selección. Solo te llevará unos minutos.</p>
 
       <div id="error-msg" class="alert alert-error" style="display:none"></div>
-      <div id="duplicate-alert" class="duplicate-alert">
-        ⚠️ Ya tenemos un registro tuyo en nuestro sistema. Tus datos anteriores serán actualizados.
-      </div>
+      <div id="duplicate-alert" class="duplicate-alert">⚠️ Ya tenemos un registro tuyo en nuestro sistema. Tus datos serán actualizados.</div>
+
+      <!-- Datos personales -->
+      <div class="section-title">Datos personales</div>
 
       <div class="field">
         <label>Tipo de documento</label>
-        <select id="tipo-doc">
+        <select id="tipo-doc" onchange="checkDuplicate()">
           <option value="DNI">DNI</option>
           <option value="CE">Carnet de Extranjería</option>
           <option value="PAS">Pasaporte</option>
@@ -98,10 +107,7 @@
 
       <div class="field">
         <label>Número de documento <span class="req">*</span></label>
-        <div class="input-group">
-          <input type="text" id="num-doc" placeholder="Ingresá tu número" maxlength="12" />
-          <button class="btn-consultar" onclick="consultarDNI()" id="btn-consultar">🔍 Autocompletar</button>
-        </div>
+        <input type="text" id="num-doc" placeholder="Ingresá tu número" maxlength="12" onblur="checkDuplicate()" />
       </div>
 
       <div class="field-row">
@@ -117,7 +123,7 @@
 
       <div class="field">
         <label>Nombres <span class="req">*</span></label>
-        <input type="text" id="nombres" placeholder="Tus nombres" />
+        <input type="text" id="nombres" placeholder="Tus nombres completos" />
       </div>
 
       <div class="field">
@@ -125,10 +131,8 @@
         <input type="date" id="fecha-nac" />
       </div>
 
-      <div class="field">
-        <label>Dirección</label>
-        <input type="text" id="direccion" placeholder="Av./Jr./Calle, número, distrito" autocomplete="off" />
-      </div>
+      <!-- Contacto -->
+      <div class="section-title">Contacto y domicilio</div>
 
       <div class="field">
         <label>Teléfono / WhatsApp <span class="req">*</span></label>
@@ -140,13 +144,64 @@
         <input type="email" id="email" placeholder="tu@correo.com" />
       </div>
 
-      <div class="alert alert-info">
+      <div class="field">
+        <label>Dirección</label>
+        <input type="text" id="direccion" placeholder="Escribí tu dirección..." autocomplete="off" />
+        <div id="mapa-container">
+          <div id="mapa"></div>
+        </div>
+      </div>
+
+      <!-- Sobre vos -->
+      <div class="section-title">Sobre vos</div>
+
+      <div class="field">
+        <label>Contanos brevemente sobre vos</label>
+        <textarea id="sobre-vos" placeholder="Contanos sobre tu experiencia, habilidades o por qué querés trabajar con nosotros. (4 a 5 líneas)" rows="5" maxlength="600"></textarea>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;text-align:right"><span id="char-count">0</span>/600 caracteres</div>
+      </div>
+
+      <!-- Archivos -->
+      <div class="section-title">Archivos</div>
+
+      <div class="field">
+        <label>Tu foto <span style="font-size:11px;font-weight:400">(opcional)</span></label>
+        <div class="upload-area" onclick="document.getElementById('input-foto').click()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted)"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <p>Hacé clic para subir tu foto</p>
+          <div class="sub-text">JPG, PNG · Máx. 5 MB</div>
+          <input type="file" id="input-foto" accept="image/jpeg,image/png,image/webp" onchange="previewFoto(this)" />
+        </div>
+        <img id="foto-preview" class="foto-preview" />
+        <div class="upload-preview" id="preview-foto-info">
+          <span id="foto-nombre"></span>
+          <button onclick="clearFoto()">✕</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Tu CV <span style="font-size:11px;font-weight:400">(opcional)</span></label>
+        <div class="upload-area" onclick="document.getElementById('input-cv').click()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <p>Hacé clic para subir tu CV</p>
+          <div class="sub-text">PDF, DOC, DOCX · Máx. 10 MB</div>
+          <input type="file" id="input-cv" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onchange="previewCV(this)" />
+        </div>
+        <div class="upload-preview" id="preview-cv-info">
+          <span>📄 </span><span id="cv-nombre"></span>
+          <button onclick="clearCV()">✕</button>
+        </div>
+      </div>
+
+      <div class="progress-bar" id="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:1rem">
         📋 Tu información será tratada de forma confidencial y usada únicamente para el proceso de selección.
       </div>
 
-      <button class="btn-submit" id="btn-submit" onclick="enviarPostulacion()">
-        Enviar postulación
-      </button>
+      <button class="btn-submit" id="btn-submit" onclick="enviarPostulacion()">Enviar postulación</button>
     </div>
 
     <div class="card success-screen" id="card-success" style="display:none">
@@ -162,105 +217,171 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const SUNAT_TOKEN = 'a26db6d95f35f6c3ffe47be304049b1a024c4103a279ab48ed2161a59dc72fa7';
     const sbClient = window.supabase.createClient(
       'https://zaurhkkcksqsaghpegdn.supabase.co',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdXJoa2tja3Nxc2FnaHBlZ2RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwODE3OTAsImV4cCI6MjA5NTY1Nzc5MH0.1_wadNmhGm_JUfnZ382hu8SuZ7neRrwuK1ApelfTYP4'
     );
 
-    async function consultarDNI() {
-      const tipo = document.getElementById('tipo-doc').value;
-      const num  = document.getElementById('num-doc').value.trim();
-      if (!num) { alert('Ingresá tu número de documento primero.'); return; }
-      const btn = document.getElementById('btn-consultar');
-      btn.textContent = 'Buscando...'; btn.disabled = true;
-      try {
-        if (tipo === 'DNI') {
-          const res = await fetch('https://apiperu.dev/api/dni', {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${SUNAT_TOKEN}`, 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({ dni: num })
-          });
-          const d = await res.json();
-          if (d.success && d.data) {
-            document.getElementById('ap-paterno').value = d.data.apellido_paterno || '';
-            document.getElementById('ap-materno').value = d.data.apellido_materno || '';
-            document.getElementById('nombres').value    = d.data.nombres || '';
-          }
-        }
-      } catch(e) {}
-      btn.textContent = '🔍 Autocompletar'; btn.disabled = false;
+    let fotoFile = null, cvFile = null;
 
-      // Verificar si ya existe
-      const { data } = await sbClient.from('candidatos').select('id').eq('numero_documento', num).maybeSingle();
-      if (data) document.getElementById('duplicate-alert').style.display = 'block';
-      else document.getElementById('duplicate-alert').style.display = 'none';
+    // Contador de caracteres
+    document.getElementById('sobre-vos').addEventListener('input', function() {
+      document.getElementById('char-count').textContent = this.value.length;
+    });
+
+    // Preview foto
+    function previewFoto(input) {
+      fotoFile = input.files[0];
+      if (!fotoFile) return;
+      document.getElementById('foto-nombre').textContent = fotoFile.name;
+      document.getElementById('preview-foto-info').classList.add('visible');
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.getElementById('foto-preview');
+        img.src = e.target.result;
+        img.classList.add('visible');
+      };
+      reader.readAsDataURL(fotoFile);
     }
 
+    function clearFoto() {
+      fotoFile = null;
+      document.getElementById('input-foto').value = '';
+      document.getElementById('preview-foto-info').classList.remove('visible');
+      document.getElementById('foto-preview').classList.remove('visible');
+    }
+
+    function previewCV(input) {
+      cvFile = input.files[0];
+      if (!cvFile) return;
+      document.getElementById('cv-nombre').textContent = cvFile.name;
+      document.getElementById('preview-cv-info').classList.add('visible');
+    }
+
+    function clearCV() {
+      cvFile = null;
+      document.getElementById('input-cv').value = '';
+      document.getElementById('preview-cv-info').classList.remove('visible');
+    }
+
+    // Verificar duplicado al salir del campo
+    async function checkDuplicate() {
+      const num = document.getElementById('num-doc').value.trim();
+      if (!num) return;
+      const { data } = await sbClient.from('candidatos').select('id').eq('numero_documento', num).maybeSingle();
+      document.getElementById('duplicate-alert').style.display = data ? 'block' : 'none';
+    }
+
+    // Enviar postulación
     async function enviarPostulacion() {
       const errEl = document.getElementById('error-msg');
       errEl.style.display = 'none';
 
-      const tipo   = document.getElementById('tipo-doc').value;
-      const num    = document.getElementById('num-doc').value.trim();
-      const apPat  = document.getElementById('ap-paterno').value.trim();
-      const apMat  = document.getElementById('ap-materno').value.trim();
-      const nom    = document.getElementById('nombres').value.trim();
-      const tel    = document.getElementById('telefono').value.trim();
+      const tipo  = document.getElementById('tipo-doc').value;
+      const num   = document.getElementById('num-doc').value.trim();
+      const apPat = document.getElementById('ap-paterno').value.trim();
+      const apMat = document.getElementById('ap-materno').value.trim();
+      const nom   = document.getElementById('nombres').value.trim();
+      const tel   = document.getElementById('telefono').value.trim();
 
       if (!num || !nom || (!apPat && !apMat) || !tel) {
         errEl.textContent = 'Completá los campos obligatorios: documento, nombre, apellidos y teléfono.';
-        errEl.style.display = 'block'; return;
+        errEl.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
       }
 
       const btn = document.getElementById('btn-submit');
       btn.disabled = true; btn.textContent = 'Enviando...';
+      document.getElementById('progress-bar').style.display = 'block';
+      setProgress(20);
 
-      const payload = {
-        tipo_documento:  tipo,
-        numero_documento: num,
-        nombres:         nom,
-        apellidos:       `${apPat} ${apMat}`.trim(),
-        fecha_nacimiento: document.getElementById('fecha-nac').value || null,
-        direccion:       document.getElementById('direccion').value.trim() || null,
-        telefono:        tel,
-        email:           document.getElementById('email').value.trim() || null,
-        estado:          'postulante',
-      };
-
-      // Verificar si ya existe — actualizar o insertar
+      // Verificar si ya existe
       const { data: existing } = await sbClient.from('candidatos').select('id, postulaciones').eq('numero_documento', num).maybeSingle();
 
-      let error;
-      if (existing) {
-        ({ error } = await sbClient.from('candidatos').update({
-          ...payload, postulaciones: (existing.postulaciones || 1) + 1, estado: 'postulante'
-        }).eq('id', existing.id));
-      } else {
-        ({ error } = await sbClient.from('candidatos').insert([payload]));
-      }
+      const payload = {
+        tipo_documento:   tipo,
+        numero_documento: num,
+        nombres:          nom,
+        apellidos:        `${apPat} ${apMat}`.trim(),
+        fecha_nacimiento: document.getElementById('fecha-nac').value || null,
+        direccion:        document.getElementById('direccion').value.trim() || null,
+        telefono:         tel,
+        email:            document.getElementById('email').value.trim() || null,
+        notas:            document.getElementById('sobre-vos').value.trim() || null,
+        estado:           'postulante',
+      };
 
-      btn.disabled = false; btn.textContent = 'Enviar postulación';
+      let error, candidatoId;
+      if (existing) {
+        payload.postulaciones = (existing.postulaciones || 1) + 1;
+        ({ error } = await sbClient.from('candidatos').update(payload).eq('id', existing.id));
+        candidatoId = existing.id;
+      } else {
+        const { data: inserted, error: err } = await sbClient.from('candidatos').insert([payload]).select().single();
+        error = err;
+        candidatoId = inserted?.id;
+      }
 
       if (error) {
         errEl.textContent = 'Ocurrió un error. Intentá de nuevo.';
-        errEl.style.display = 'block'; return;
+        errEl.style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Enviar postulación';
+        document.getElementById('progress-bar').style.display = 'none';
+        return;
       }
 
-      document.getElementById('card-form').style.display = 'none';
-      document.getElementById('card-success').style.display = 'block';
+      setProgress(50);
+
+      // Subir foto
+      if (fotoFile && candidatoId) {
+        const ext = fotoFile.name.split('.').pop().toLowerCase();
+        const path = `candidatos/${candidatoId}/foto_${Date.now()}.${ext}`;
+        await sbClient.storage.from('Legajos').upload(path, fotoFile, { upsert: true });
+        await sbClient.from('candidatos').update({ foto_path: path }).eq('id', candidatoId);
+      }
+
+      setProgress(75);
+
+      // Subir CV
+      if (cvFile && candidatoId) {
+        const ext = cvFile.name.split('.').pop().toLowerCase();
+        const path = `candidatos/${candidatoId}/cv_${Date.now()}.${ext}`;
+        await sbClient.storage.from('Legajos').upload(path, cvFile, { upsert: true });
+        await sbClient.from('candidatos').update({ cv_path: path }).eq('id', candidatoId);
+      }
+
+      setProgress(100);
+
+      setTimeout(() => {
+        document.getElementById('card-form').style.display = 'none';
+        document.getElementById('card-success').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 400);
     }
 
-    // Google Places para dirección
+    function setProgress(pct) {
+      document.getElementById('progress-fill').style.width = pct + '%';
+    }
+
+    // Google Maps autocomplete
     function initGoogleMaps() {
       const input = document.getElementById('direccion');
       const ac = new google.maps.places.Autocomplete(input, {
         componentRestrictions: { country: 'pe' },
-        fields: ['formatted_address']
+        fields: ['formatted_address', 'geometry']
       });
       ac.addListener('place_changed', () => {
         const place = ac.getPlace();
-        if (place.formatted_address) input.value = place.formatted_address;
+        if (!place.geometry) return;
+        input.value = place.formatted_address || input.value;
+        // Mostrar mapa
+        document.getElementById('mapa-container').style.display = 'block';
+        const map = new google.maps.Map(document.getElementById('mapa'), {
+          center: place.geometry.location, zoom: 16,
+          disableDefaultUI: true, zoomControl: true
+        });
+        new google.maps.Marker({ position: place.geometry.location, map });
       });
     }
   </script>
